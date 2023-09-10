@@ -1,7 +1,7 @@
 import {findShortestPaths} from './dijkstra';
 
 describe('Dijkstra findShortestPaths', () => {
-  test('should return dictionary with shortest paths from source node to all the others', () => {
+  test('should return dictionary with shortest paths lengths from source node to all the others', () => {
     const edges = [
       ['a', 'b', 10],
       ['a', 'c', 3],
@@ -14,21 +14,20 @@ describe('Dijkstra findShortestPaths', () => {
     const vertices = ['a', 'b', 'c', 'd', 'e'];
     const result = findShortestPaths(edges, 'a');
 
-
     expect(result.get('a')).toEqual({
-      length: 0, path: ['a']
+      length: 0, previous: null
     });
     expect(result.get('b')).toEqual({
-      length: 7, path: ['a', 'c', 'b']
+      length: 7, previous: 'c'
     });
     expect(result.get('c')).toEqual({
-      length: 3, path: ['a', 'c']
+      length: 3, previous: 'a'
     });
     expect(result.get('d')).toEqual({
-      length: 9, path: ['a', 'c', 'b', 'd']
+      length: 9, previous: 'b'
     });
     expect(result.get('e')).toEqual({
-      length: 5, path: ['a', 'c', 'e']
+      length: 5, previous: 'c'
     });
   });
 });

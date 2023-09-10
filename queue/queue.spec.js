@@ -96,4 +96,12 @@ describe('Queue', () => {
       expect(q.dequeue()).toBe(1);
     });
   });
+
+  describe('isEmpty', () => {
+    test('should return true if queue is empty, false otherwise', () => {
+      expect(q.isEmpty()).toBe(true);
+      q.enqueue(1);
+      expect(q.isEmpty()).toBe(false);
+    });
+  });
 });

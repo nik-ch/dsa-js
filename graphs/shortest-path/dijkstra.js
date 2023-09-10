@@ -13,9 +13,9 @@ import {PriorityQueue} from '../../priority-queue/priority-queue';
  * @param {*} source - source vertex, where the search begins.
  * @returns Map where key is vertex from vertices list, value is following object:
  * {
- *   length,
- *   path
- * }, where length is the shortest path's length, path - sequence of elements leading to the current vertex
+ *   length, // the shortest path's length
+ *   previous // previous element in the path (null for source element)
+ * }
  */
 export const findShortestPaths = (edges, source) => {
   const adjacencyMap = new Map();
@@ -29,12 +29,12 @@ export const findShortestPaths = (edges, source) => {
   // Priority queue stores arrays with following values:
   // first element - current path length
   // second element - node for which path is counted
-  // third element - sequence of the preceding elements
-  pq.push([0, source, [source]]);
+  // third element - previous element in the path
+  pq.push([0, source, null]);
 
   const result = new Map();
   while (pq.size() > 0) {
-    const [pathLen, v, path] = pq.pop();
+    const [pathLen, v, previous] = pq.pop();
 
     if (result.has(v)) {
       continue;
@@ -42,13 +42,13 @@ export const findShortestPaths = (edges, source) => {
 
     result.set(v, {
       length: pathLen,
-      path
+      previous
     });
 
     if (adjacencyMap.has(v)) {
       adjacencyMap.get(v).forEach(([neighbour, neighbourPath]) => {
         if (!result.has(neighbour)) {
-          pq.push([pathLen + neighbourPath, neighbour, [...path, neighbour]]);
+          pq.push([pathLen + neighbourPath, neighbour, v]);
         }
       })
     }

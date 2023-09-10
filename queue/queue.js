@@ -28,6 +28,10 @@ export class Queue {
     return this.#n - this.#first;
   }
 
+  isEmpty() {
+    return this.size() === 0;
+  }
+
   [Symbol.iterator]() {
     return this.#createIterator();
   }
