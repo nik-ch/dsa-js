@@ -29,8 +29,8 @@ export class UnionFind {
     let p = this.#nodes.get(x);
     while (p !== this.#nodes.get(p)) {
       // path compression
-      p = this.#nodes.get(this.#nodes.get(x));
-      this.#nodes.set(x, p);
+      this.#nodes.set(p, this.#nodes.get(this.#nodes.get(p)));
+      p = this.#nodes.get(p);
     }
     return p;
   }
@@ -57,11 +57,11 @@ export class UnionFind {
     // tree balancing
     const compareRes = this.#rank.get(p1) - this.#rank.get(p2);
     if (compareRes > 0) {
-      this.#nodes.set(y, p1);
+      this.#nodes.set(p2, p1);
     } else if (compareRes < 0) {
-      this.#nodes.set(x, p2);
+      this.#nodes.set(p1, p2);
     } else {
-      this.#nodes.set(y, p1);
+      this.#nodes.set(p2, p1);
       this.#rank.set(p1, this.#rank.get(p1) + 1);
     }
     this.#componentsCount--;

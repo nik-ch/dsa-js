@@ -4,7 +4,7 @@ let uf;
 
 describe('UnionFind', () => {
   beforeEach(() => {
-    uf = new UnionFind([1, 2, 3, 4, 5]);
+    uf = new UnionFind([1, 2, 3, 4, 5, 6, 7]);
   });
 
   describe('find', () => {
@@ -33,15 +33,29 @@ describe('UnionFind', () => {
       const p2 = uf.find(3);
       expect(p1 === p2);
     });
+
+    test('should connect subgraphs', () => {
+      uf.union(1, 2);
+      uf.union(2, 3);
+      uf.union(4, 5);
+      uf.union(5, 6);
+      uf.union(3, 4);
+
+      expect(uf.isSameComponent(1, 2)).toBe(true);
+      expect(uf.isSameComponent(1, 3)).toBe(true);
+      expect(uf.isSameComponent(1, 4)).toBe(true);
+      expect(uf.isSameComponent(1, 5)).toBe(true);
+      expect(uf.isSameComponent(1, 6)).toBe(true);
+    });
   });
 
   describe('componentsCount', () => {
     test('should return number of different components', () => {
-      expect(uf.componentsCount).toBe(5);
+      expect(uf.componentsCount).toBe(7);
 
       uf.union(1, 2);
       uf.union(2, 3);
-      expect(uf.componentsCount).toBe(3);
+      expect(uf.componentsCount).toBe(5);
     });
   });
 });
