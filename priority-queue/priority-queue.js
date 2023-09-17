@@ -82,6 +82,10 @@ export class PriorityQueue {
     return toReturn;
   }
 
+  isEmpty() {
+    return this.size() === 0;
+  }
+
   size() {
     return this.#n - 1;
   }
@@ -99,7 +103,7 @@ export class PriorityQueue {
     if (array.length === 0) {
       return;
     }
-    this.#ar = array.concat(array[0]);
+    this.#ar = [...array, array[0]];
     this.#n = this.#ar.length;
     for (let i = Math.floor((this.#ar.length - 1) / 2); i >= 1; i--) {
       this.#sink(i);

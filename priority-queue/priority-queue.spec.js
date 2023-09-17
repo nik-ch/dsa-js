@@ -197,5 +197,14 @@ describe('PriorityQueue', () => {
       expect(queue.size()).toBe(2);
       expect(queue.pop()).toBe(-5);
     });
-  })
+  });
+
+  describe('isEmpty', () => {
+    test('should return true if queue is empty, false otherwise', () => {
+      expect(pq.isEmpty()).toBe(true);
+
+      pq.push(1);
+      expect(pq.isEmpty()).toBe(false);
+    });
+  });
 });

@@ -30,7 +30,7 @@ export const findShortestPaths = (edges, source) => {
   pq.push([0, source, null]);
 
   const distances = new Map();
-  while (pq.size() > 0) {
+  while (!pq.isEmpty()) {
     const [pathLen, v, previous] = pq.pop();
 
     if (distances.has(v)) {
