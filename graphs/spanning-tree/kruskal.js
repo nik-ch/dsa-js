@@ -1,13 +1,14 @@
-// case 1:  [[-8,14],[16,-18],[-19,-13],[-18,19],[20,20],[13,-20],[-15,9],[-4,-8]]
-// case 2: [[-14,-14],[-18,5],[18,-10],[18,18],[10,-2]]
-
 import {PriorityQueue} from '../../priority-queue/priority-queue';
 import {UnionFind} from '../../union-find/union-find';
 
 /**
+ * Builds MST for the given graph using Kruskal's algorithm.
+ * Time complexity: O(E * log E), where E - number of edges.
+ * Space complexity: O(E).
  * 
- * @param {*} vertices 
- * @param {*} edges 
+ * @param {*} vertices - list of all vertices in the graph.
+ * @param {*} edges - list of edges and weights. Each item is [v1, v2, w], with v1 -> v2 edge with weight w.
+ * @returns list of edges in MST.
  */
 export const buildMst = (vertices, edges) => {
   const pq = new PriorityQueue(([,, weight1], [,, weight2]) => weight1 - weight2, edges);

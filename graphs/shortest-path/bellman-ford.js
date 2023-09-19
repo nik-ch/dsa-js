@@ -6,7 +6,7 @@
  * Space comlpexity: 
  * 
  * @param {*} edges - list of edges and weights. Each item is [v1, v2, w], with v1 -> v2 edge with weight w.
- * @param {*} vertices 
+ * @param {*} vertices - list of all vertices in the graph.
  * @returns object with properties:
  *  distances - map where key is the node for which path is counted, values is [previousNode, lengthOfPath]
  *  hasNegativeWeightCycle - if graph has negative path cycles.

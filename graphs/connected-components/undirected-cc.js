@@ -1,11 +1,10 @@
 /**
  * Detects connected components sets in the given graph.
- * 
  * Time complexity: O(V + E), V - number of vertices, E - number of edges.
  * Space complexity: O(V), V - number of vertices.
  * 
- * @param {*} edges 
- * @param {*} vertices 
+ * @param {*} edges - list of edges. Each item is [v1, v2], with v1 -> v2 edge.
+ * @param {*} vertices - list of all vertices in the graph.
  * @returns Map where each item is:
  *  key - vertex from the source graph.
  *  value - identifier of the component set (starting with 0).

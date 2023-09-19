@@ -1,4 +1,12 @@
-
+/**
+ * Computes strong components in directed graph.
+ * Time complexity: O(V + E), V - number of vertices, E - number of edges.
+ * Space complexity: O(V), V - number of vertices.
+ * 
+ * @param {*} edges - list of edges. Each item is [v1, v2], with v1 -> v2 edge.
+ * @param {*} vertices - list of all vertices in the graph.
+ * @returns 
+ */
 export const buildConnectedComponents = (edges, vertices) => {
   // building reverse post order for reversed graph
   const reversedEdges = edges.map(([from, to]) => [to, from]);
